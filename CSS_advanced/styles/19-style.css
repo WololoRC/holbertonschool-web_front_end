@@ -180,8 +180,7 @@ ul.row{
 .footer-copyright{
     margin: 0;
     font-size: var(--font-size-small);
-    colo
-r: var(--text-color);
+    color: var(--text-color);
 }
 
 .footer ul{
