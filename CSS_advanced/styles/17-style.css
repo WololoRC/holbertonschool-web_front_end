@@ -50,10 +50,7 @@ a:active {
 }
 
 .section {
-    padding-left: var(--section-padding);
-    padding-right: var(--section-padding);
-    padding-top: var(--section-padding);
-    padding-bottom: var(--section-padding);
+    padding: var(--section-padding);
 }
 
 .section-header {
