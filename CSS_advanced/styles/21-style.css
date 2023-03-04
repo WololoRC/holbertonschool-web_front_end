@@ -176,3 +176,8 @@ a:active {
     --text-color:var(--color-white);
     --section-title-color: var(--color-black);
 }
+
+[class^='col-']{
+    float: left;
+    padding: 0.5rem;
+}
