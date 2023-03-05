@@ -50,7 +50,7 @@ a:active {
 .button {
     display: var(--button-display);
     padding: var(--button-padding);
-    border: var(--button-border);
+    border-style: var(--button-border);
     font-size: var(--button-font-size);
     color: var(--button-color);
     text-decoration: var(--button-text-decoration);
@@ -146,7 +146,7 @@ a:active {
     --nav-item-margin: 0 0 3rem 0;
     --nav-item-link-hover: var(--color-primary);
     --section-tagline-margin: 0;
-    --button-display: inline-block;
+    --button-display: inline block;
     --button-padding: 1.5rem 3rem;
     --button-border: 0.2rem solid var(--color-primary);
     --button-color: var(--color-black);
@@ -234,5 +234,24 @@ a:active {
 
 .card-testimonial .card-avatar {
     border-radius: 50%;
-    
+    width: 10rem;
+    height: 10rem;
+}
+
+.card-testimonial .card-quote cite {
+    display: block;
+    padding-top: 1rem;
+    color: var(--color-primary);
+}
+
+.section-hero {
+    background-size: 90rem auto;
+}
+
+.section-hero .section-title {
+    margin-bottom: 5rem;
+}
+
+.section-hero .section-inner {
+    padding: 10rem 40rem 2rem 0;
 }
