@@ -185,6 +185,8 @@ a:active {
 .nav .nav-item:hover .nav-link::before {
     display: block;
     padding: 0.5rem 1rem;
+    background-color: var(--color-primary);
+    width: 100%;
 }
 
 .row .ul {
