@@ -306,6 +306,7 @@ a:active {
     margin: 0;
     opacity: 0;
     height: 100%;
+    overflow: hidden;
 }
 
 .card-work .card-image img {
@@ -321,7 +322,6 @@ a:active {
     left: -0.1rem;
     right: -0.1rem;
     z-index: 1;
-    transition: var(--transition-duration) var(--transition-cubic-bezier);
 }
 
 .card-work:hover .card-inner {
@@ -337,10 +337,19 @@ a:active {
     position: relative;
 }
 
-.card-work .card-title a::after {
+.card-work .card-title a{
     display: block;
     text-decoration: none;
     padding-top: 45%;
+}
+
+.card-work .card-title a::after{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    content: "";
 }
 
 .card-work:hover .card-title {
@@ -357,13 +366,14 @@ a:active {
     top: -4.5rem;
     bottom: -4.5rem;
     left: -1rem;
-    color: #edefed;
+    color: #efeded;
     font-size: 10rem;
     z-index: -1;
 }
 
 .card-work:hover .card-image {
-    transform: scale(1.2)
+    transform: scale(1.2);
+    transition: var(--transition-duration) var(--transition-cubic-bezier);
 }
 
 .card-work:hover .card-outer {
