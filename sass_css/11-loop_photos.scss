@@ -1,8 +1,0 @@
-@import '11-photos';
-
-/* A @each loop with a 'f-string' like declaration. */
-@each $item in $list-names {
-    .photo-#{$item} {
-        background: image-url("photos/#{$item}.jpg") no-repeat ;
-    }
-}
