@@ -1,0 +1,6 @@
+/* A for loop in Sass */
+@for $item from 1 to 7 {
+    h#{$item} {
+        font-size: #{$item}px;
+    }
+}

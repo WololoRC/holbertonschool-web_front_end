@@ -1,0 +1,8 @@
+/* A Sass declaration with a hover state nested */
+button {
+    color: #FF0000;
+
+    :hover {
+        color: #00FF00;
+    }
+}
