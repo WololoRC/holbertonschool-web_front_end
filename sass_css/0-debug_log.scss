@@ -1,0 +1,3 @@
+/* print 'Hello word' with @debug mode */
+$DEBUG: "Hello world";
+@debug "#{$DEBUG}";

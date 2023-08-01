@@ -1,0 +1,9 @@
+/* A Sass nested declaration that assaign
+something to the first .red node inside body */
+body {
+    color: #3D3D3D;
+
+    > .red {
+        color: #FF0000;
+    }
+}
