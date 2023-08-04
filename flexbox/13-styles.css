@@ -629,6 +629,9 @@
     margin-bottom: 3rem;
   }
 
+  /* Tag list
+    ============================= */
+
   .tag-list {
     padding: 0;
     list-style: none;
@@ -642,5 +645,5 @@
   }
 
   .tag-list li:last-child::after {
-    content: none;
+    content: "";
   }
