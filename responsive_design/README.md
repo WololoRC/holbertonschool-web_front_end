@@ -1,5 +1,7 @@
 # Responsive design
 
+![imagen](https://github.com/WololoRC/holbertonschool-web_front_end/assets/110310135/f08de066-bbf5-4f26-9243-dde4b3559b6f)
+
 ## Learning Objectives
 
 - Mobile-first design
