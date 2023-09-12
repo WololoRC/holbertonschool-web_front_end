@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 11</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script type="application/javascript">
+      function buildForm() {
+        /**
+         * buildForm - Builds a form to post new data on db.json
+         * */
+        $("body").append(
+          "<form action='#' onsubmit='sendForm();return false'>"
+        );
+        $("form").append(
+          "<div>" +
+            "<label for='author'>Author " +
+            "<input type='text' id='author'>",
+          "<div>" + "<label for='title'>Title " + "<textarea id='title'>",
+          "<input type='submit'>"
+        );
+      }
+
+      function sendForm() {
+        $("form").after("About to send the query to the API");
+        const author = $("#author").val();
+        const title = $("#title").val();
+        const data = {
+          author: author,
+          title: title,
+        };
+        $.post({
+          url: "http://localhost:3000/posts",
+          data: data,
+          dataType: "json",
+        })
+          .done(() => {
+            listPosts();
+          })
+          .fail(() => {
+            alert("Error sending the POST query");
+          });
+      }
+
+      function addPostRow(data) {
+        /**
+         * addPostRow - Appends a paragraph with object @data data.
+         * @data: Object from db.json
+         * */
+        console.log(data);
+        $("body").append(
+          "<p><span>Post created with id " +
+            data.id +
+            ", title: " +
+            data.title +
+            ", author: " +
+            data.author +
+            "</span></p>"
+        );
+      }
+
+      function listPosts() {
+        /**
+         * listPosts - Request to localhost:3000/posts and share data.
+         * Returns: on Success request data, else a error alert.
+         * */
+        $.get("http://localhost:3000/posts", (json) => {
+          json.forEach((element) => {
+            addPostRow(element);
+          });
+        }).fail(() => {
+          alert("server Error");
+        });
+      }
+    </script>
+    <style>
+      p {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      $(document).ready(buildForm());
+      listPosts();
+    </script>
+  </body>
+</html>

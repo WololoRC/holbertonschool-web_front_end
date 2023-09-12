@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Task 7</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function createSearchForm() {
+        $("body").append("<input type='text'>", "<input type='submit'>");
+        $("input:nth-of-type(2)").on("click", function() {
+          const search = $("input:first").val();
+          queryWikipedia(search)
+        });
+        $("body").append("<ul>");
+      }
+
+      function addNewArticle(id, title, snippet) {
+        $("ul").append(
+          "<li><p><span>" +
+            id +
+            " - " +
+            "</span>" +
+            "<b>" +
+            title +
+            "</b>" +
+            "</p>" +
+            "<p>" +
+            snippet +
+            "</p></li>"
+        );
+      }
+
+      function queryWikipedia(search) {
+        const myData = {
+          action: "query",
+          list: "search",
+          srsearch: search,
+          utf8: "",
+          format: "json",
+          origin: "*",
+        };
+
+        $.ajax({
+          url: "https://en.wikipedia.org/w/api.php?",
+          data: myData,
+          crossDomain: true,
+        }).done(function (json) {
+          let content = json.query.search;
+          content.forEach((element) => {
+            addNewArticle(element.pageid, element.title, element.snippet);
+          });
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <script>
+      createSearchForm();
+    </script>
+  </body>
+</html>
