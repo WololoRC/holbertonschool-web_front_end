@@ -1,0 +1,125 @@
+<!-- Task 1, Create a cookie that expires -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 3</title>
+    <script>
+      function setCookies() {
+        // set a cookie
+        const fName = document.forms["myForm"]["fname"].value;
+        const eMail = document.forms["myForm"]["email"].value;
+
+        const date = new Date();
+        const addTime = 10 * 24 * 60 * 60 * 1000;
+        const exTime = parseInt(date.getTime()) + addTime;
+        date.setTime(exTime);
+
+        document.cookie =
+          "firstname=" + fName + "; expires=" + date.toUTCString();
+        document.cookie = "email=" + eMail + "; expires=" + date.toUTCString();
+        showWelcomeMessageOrForm();
+      }
+
+      function showCookies() {
+        // show cookies and append to bottom of html as a p element
+        const decodedCookies = decodeURIComponent(document.cookie);
+
+        const newP = document.createElement("p");
+        const pContent = document.createTextNode(
+          "Email: " +
+            getCookie("email") +
+            " - " +
+            "Firstname: " +
+            getCookie("firstname")
+        );
+        newP.appendChild(pContent);
+        const ourDiv = document.getElementById("ourDiv");
+        ourDiv.append(newP);
+      }
+
+      function getCookie(name) {
+        // get a specific cookie
+        let cookies = decodeURIComponent(document.cookie);
+        for (let item of cookies.split(";")) {
+          let clean = item.trim();
+          let splitItem = clean.split("=");
+          if (splitItem[0] === name) {
+            return splitItem[1];
+          }
+        }
+      }
+
+      function showForm() {
+        // shows the form but removes the header
+        document.getElementById("login").style.display = "inline-block";
+        document.getElementById("theForm").style.display = "inline-block";
+      }
+
+      function hideForm() {
+        // hide the form
+        let theForm = document.getElementById("theForm");
+        theForm.style.display = "none";
+      }
+
+      function deleteCookiesAndShowForm() {
+        // remove the two cookies and show the form
+        for (let item of document.cookie.split(";")) {
+          let clean = item.trim();
+          clean = clean.split("=");
+          document.cookie =
+            clean[0] + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
+        showForm();
+      }
+
+      function showWelcomeMessageOrForm() {
+        if (decodeURIComponent(document.cookie).length > 0) {
+          document.getElementById("login").style.display = "none";
+
+          const welcome = document.createElement("h1");
+          const content = document.createTextNode(
+            "Welcome: " + getCookie("firstname")
+          );
+          const link = document.createElement("a");
+          link.style.cursor = "pointer";
+          link.style.fontStyle = "italic";
+          const linkContent = document.createTextNode(" (logout)");
+
+          link.appendChild(linkContent);
+          welcome.appendChild(content);
+          welcome.appendChild(link);
+          welcome.className = "welcome";
+
+          document.getElementById("login").after(welcome);
+          hideForm();
+
+          link.addEventListener("click", () => {
+            welcome.style.display = "none";
+            deleteCookiesAndShowForm();
+          });
+        } else {
+          showForm();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="formDiv">
+      <h2 id="login">Login to the web site</h2>
+      <form id="theForm" action="" name="myForm">
+        <input type="text" id="fname" name="fname" placeholder="First name" />
+        <input type="text" id="email" name="email" placeholder="Email" />
+        <button type="button" onclick="setCookies()">Log me in</button>
+      </form>
+    </div>
+    <div id="ourDiv">
+      <h1>Cookies</h1>
+      <button onclick="showCookies()">Show the cookies</button>
+    </div>
+    <script>
+      showWelcomeMessageOrForm();
+    </script>
+  </body>
+</html>
