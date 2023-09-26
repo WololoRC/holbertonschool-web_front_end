@@ -1,0 +1,40 @@
+<!-- Task 0, Create a cookie and show it -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 0</title>
+    <script>
+      function setCookies() {
+        const fName = document.forms["myForm"]["fname"].value;
+        const eMail = document.forms["myForm"]["email"].value;
+        document.cookie = "firstname=" + fName;
+        document.cookie = "email=" + eMail
+      }
+
+      function showCookies() {
+        const decodedCookies = decodeURIComponent(document.cookie)
+        console.log(decodedCookies)
+
+        const newP = document.createElement("p");
+        const pContent = document.createTextNode("Cookies: " + decodedCookies);
+        newP.appendChild(pContent);
+        const ourDiv = document.getElementById("ourDiv");
+        ourDiv.append(newP);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Login to the web site</h1>
+    <form action="" name="myForm">
+      <input type="text" id="fname" name="fname" placeholder="First name" />
+      <input type="text" id="email" name="email" placeholder="Email" />
+      <button type="button" onclick="setCookies()">Log me in</button>
+    </form>
+    <div id="ourDiv">
+      <h1>Cookies</h1>
+      <button onclick="showCookies()">Show the cookies</button>
+    </div>
+  </body>
+</html>
