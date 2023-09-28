@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 5</title>
+    <script>
+      const availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+      function addItemToCart(item) {
+        // If item exists on @availableItems add it to the
+        // local storage.
+        if (availableItems.includes(item)) {
+          localStorage.setItem(item, true);
+        }
+      }
+
+      function createStore() {
+        // Create a ul with localStorage items.
+        // If you click on il item this is added to localStorage
+        const uList = document.createElement("ul");
+
+        for (let item of availableItems) {
+          let lItem = document.createElement("li");
+          let content = document.createTextNode(item);
+          lItem.appendChild(content);
+          uList.append(lItem);
+          lItem.addEventListener("click", () => {
+            addItemToCart(item);
+          });
+
+          lItem.style.cursor = "pointer";
+        }
+
+        const main = document.getElementById("main");
+        main.append(uList);
+        main.style.display = "flex";
+        main.style.flexDirection = "column";
+      }
+
+      function displayCart() {
+        // if localStorage.length > 0 display a paragraph 
+        // with the number of elements on localStorage.
+        if (localStorage.length > 0) {
+          let cnt = 0;
+          for (let item of availableItems) {
+            if (localStorage.getItem(item)) {
+              cnt++;
+            }
+          }
+          const main = document.getElementById("main");
+          const pElement = document.createElement("p");
+          const pContent = document.createTextNode(
+            "You previously had " + cnt + " items in your cart"
+          );
+          pElement.appendChild(pContent);
+          main.after(pElement);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script>
+      if (typeof Storage !== "undefined") {
+        createStore();
+        displayCart()
+      } else {
+        alert(
+          "Sorry, your browser does not support Web storage. Try again with a better one"
+        );
+      }
+    </script>
+  </body>
+</html>
